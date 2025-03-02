@@ -91,4 +91,59 @@
 /* Ensure the icon doesn't change color on hover */
 .email-link:hover .email-icon {
   color: #DB4437;
+}
+
+/* WhatsApp button styles */
+.whatsapp-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #25D366; /* WhatsApp green */
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  max-width: 280px;
+}
+
+.whatsapp-button:hover {
+  background-color: #128C7E; /* Darker WhatsApp green */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-button .whatsapp-icon {
+  margin-right: 10px;
+  color: white;
+}
+
+/* Add a subtle animation on hover */
+.whatsapp-button:hover .whatsapp-icon {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Center the button */
+.contact-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 } 
