@@ -1,10 +1,11 @@
 ---
 import "../styles/background-music.css";
+import backgroundMusic from "../assets/mp3/background_song.mp3";
 ---
 
 <div class="background-music-container">
   <audio id="background-music" loop preload="auto">
-    <source src="src/assets/mp3/background_song.mp3" type="audio/mp3" />
+    <source src={backgroundMusic} type="audio/mp3" />
     Your browser does not support the audio element.
   </audio>
 
