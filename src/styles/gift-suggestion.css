@@ -6,7 +6,7 @@
 }
 
 .gift-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -17,7 +17,7 @@
 }
 
 .gift-container {
-  margin: var(--spacing-lg) 0;
+  margin: var(--spacing-md) 0;
   position: relative;
   z-index: 2;
 }
@@ -34,7 +34,7 @@
   font-size: var(--text-regular);
   color: var(--darker-pink);
   margin: var(--spacing-md) 0;
-  max-width: 500px;
+  max-width: 350px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -61,8 +61,9 @@
   z-index: 2;
 }
 
-.envelope::before, .envelope::after {
-  content: '';
+.envelope::before,
+.envelope::after {
+  content: "";
   position: absolute;
   bottom: 0;
   width: 50%;
@@ -163,7 +164,7 @@
 }
 
 .money::before {
-  content: '$';
+  content: "$";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -187,89 +188,6 @@
   }
 }
 
-/* Bank Card Styling */
-.bank-info {
-  margin-top: var(--spacing-lg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-md);
-}
-
-.bank-card {
-  width: 300px;
-  height: 180px;
-  background: linear-gradient(135deg, var(--dark-pink), var(--darker-pink));
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 10px 20px rgba(166, 93, 93, 0.2);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  overflow: hidden;
-}
-
-.bank-card::before {
-  content: '';
-  position: absolute;
-  top: -50px;
-  right: -50px;
-  width: 150px;
-  height: 150px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-}
-
-.bank-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.bank-name {
-  font-size: 1.2rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.card-chip {
-  font-size: 1.5rem;
-}
-
-.bank-card-number {
-  font-size: 1.3rem;
-  letter-spacing: 2px;
-  margin: 20px 0;
-  word-spacing: 8px;
-}
-
-.bank-card-details {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-.card-holder {
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.bank-details {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: var(--spacing-md);
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  width: 300px;
-}
-
-.bank-details p {
-  margin: var(--spacing-xs) 0;
-  color: var(--darker-pink);
-}
-
 /* Responsive styles */
 @media (max-width: 768px) {
   .bank-card {
@@ -277,12 +195,371 @@
     height: 160px;
     padding: 15px;
   }
-  
+
   .bank-card-number {
     font-size: 1.1rem;
   }
-  
+
   .bank-details {
     width: 280px;
   }
-} 
+}
+
+/* Amazon Gift Card Styling */
+.gift-cards-container {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-sm);
+  width: 100%;
+}
+
+.gift-card-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  width: 280px;
+  opacity: 0;
+  /* transform: translateY(20px); */
+  animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gift-card-stack-inner {
+  position: relative;
+  height: 100px;
+  width: 100%;
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  justify-content: center;
+}
+
+.gift-card-vendor {
+  font-size: var(--heading-small);
+  color: var(--dark-pink);
+  margin-bottom: var(--spacing-md);
+  font-family: "Playfair Display", serif;
+}
+
+.amazon-gift-card {
+  position: absolute;
+  width: 280px;
+  height: 160px;
+  transform-origin: center;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1 !important;
+  animation: cardEntrance 0.8s cubic-bezier(0.17, 0.67, 0.83, 0.67) forwards;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  pointer-events: auto !important;
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(30px) rotate(var(--rotation, 0deg))
+      scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(var(--y-offset, 0))
+      rotate(var(--rotation, 0deg)) scale(1);
+  }
+}
+
+/* Prevent movement when clicking copyable cards */
+.amazon-gift-card.copyable:active {
+  transform: translateX(-50%) rotate(var(--rotation, 0deg))
+    translateY(var(--y-offset, 0px)) !important;
+  transition: none !important;
+}
+
+/* Only apply hover effect when not on touch devices */
+@media (hover: hover) {
+  .amazon-gift-card:hover {
+    transform: translateX(-50%) translateY(-10px) rotate(0deg) !important;
+    z-index: 10 !important;
+  }
+}
+
+/* Make only the copy button clickable, not the entire card */
+.amazon-gift-card.copyable {
+  pointer-events: none;
+}
+
+.amazon-gift-card.copyable .copy-button {
+  pointer-events: auto;
+}
+
+.amazon-gift-card-inner {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.amazon-gift-card-logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.amazon-logo {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: white;
+}
+
+.gift-card-text {
+  font-size: 0.9rem;
+  color: #ff9900;
+}
+
+.liverpool-logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+}
+
+.amazon-gift-card-amount {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  align-self: flex-end;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .gift-cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gift-card-stack {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .amazon-gift-card {
+    width: 220px;
+    height: 130px;
+  }
+
+  .amazon-gift-card-amount {
+    font-size: 2rem;
+  }
+}
+
+/* Copy button styles */
+.copy-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.copy-button:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.05);
+}
+
+.copy-button svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Copy notification */
+.copy-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: var(--dark-pink);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.copy-notification.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* Copyable card styles */
+.amazon-gift-card.copyable {
+  cursor: pointer;
+}
+
+.amazon-gift-card.copyable:hover .amazon-gift-card-inner {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.amazon-gift-card.copyable .amazon-gift-card-amount {
+  font-family: monospace;
+  letter-spacing: 1px;
+  font-size: 1.8rem;
+  word-break: break-all;
+  max-width: 100%;
+  text-align: center;
+}
+
+/* Special styling for  */
+.amazon-gift-card.copyable[data-value*="123456789"] .amazon-gift-card-amount {
+  font-size: 0.5rem; /* Smaller font size for CLABE */
+  letter-spacing: 0.5px; /* Tighter letter spacing */
+  line-height: 1.2; /* Better line height */
+  word-break: break-all; /* Ensure long numbers break properly */
+  text-align: center;
+}
+
+/* Add a label for Number */
+.amazon-gift-card.copyable[data-value*="123456789"]
+  .amazon-gift-card-logo::after {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+/* Make the copy button more prominent for BBVA */
+.amazon-gift-card.copyable[data-value*="123456789"] .copy-button {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 6px 12px;
+}
+
+.amazon-gift-card.copyable[data-value*="123456789"] .copy-button:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Account holder name styling */
+.account-holder {
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  font-weight: normal;
+}
+
+/* Special styling for Coppel card number */
+.amazon-gift-card.copyable[data-value*="4169"] .amazon-gift-card-amount {
+  font-size: 0.75rem; /* Smaller font size for card number */
+  letter-spacing: 0.5px; /* Tighter letter spacing */
+  line-height: 1.2; /* Better line height */
+  word-break: break-all; /* Ensure long numbers break properly */
+  text-align: center;
+}
+
+/* Add a label for card number */
+.amazon-gift-card.copyable[data-value*="4169"] .amazon-gift-card-logo::after {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+/* Make the copy button more prominent for Coppel */
+.amazon-gift-card.copyable[data-value*="4169"] .copy-button {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 6px 12px;
+}
+
+.amazon-gift-card.copyable[data-value*="4169"] .copy-button:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Card hover animation */
+@keyframes cardFloat {
+  0% {
+    transform: translateX(-50%) translateY(var(--y-offset, 0))
+      rotate(var(--rotation, 0deg));
+  }
+  50% {
+    transform: translateX(-50%) translateY(calc(var(--y-offset, 0) - 10px))
+      rotate(calc(var(--rotation, 0deg) + 2deg));
+  }
+  100% {
+    transform: translateX(-50%) translateY(var(--y-offset, 0))
+      rotate(var(--rotation, 0deg));
+  }
+}
+
+/* Card exit animation */
+@keyframes cardExit {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(var(--y-offset, 0))
+      rotate(var(--rotation, 0deg)) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-30px)
+      rotate(calc(var(--rotation, 0deg) + 5deg)) scale(0.8);
+  }
+}
+
+/* Remove the exit animation entirely */
+.gift-section:not(.in-view) .amazon-gift-card:not(:hover):not(:active) {
+  /* animation: cardExit 0.5s ease-out forwards; */
+  /* Don't apply exit animation at all */
+  opacity: 1 !important;
+  transform: translateX(-50%) translateY(var(--y-offset, 0))
+    rotate(var(--rotation, 0deg)) scale(1) !important;
+}
+
+/* Ensure cards stay visible when clicked */
+.amazon-gift-card:active,
+.amazon-gift-card:focus,
+.amazon-gift-card:hover {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: translateX(-50%) translateY(var(--y-offset, 0))
+    rotate(var(--rotation, 0deg)) scale(1) !important;
+  z-index: 10 !important; /* Ensure clicked card stays on top */
+}
+
+/* Only apply float animation on initial hover, not during click */
+.gift-card-stack:hover .amazon-gift-card:not(:active):not(:focus) {
+  /* animation: cardFloat 3s ease-in-out infinite; */
+  /* Disable float animation to prevent issues */
+}
+
+/* Add a staggered delay to cards based on their index */
+.amazon-gift-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.amazon-gift-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.amazon-gift-card:nth-child(3) {
+  animation-delay: 0.3s;
+}

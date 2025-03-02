@@ -4,13 +4,35 @@ import { animateWords } from "../utils/animations.js";
 
 const giftTitle = "Lluvia de Sobres";
 const giftDescription =
-  "Si deseas hacerme un regalo, un detalle en efectivo sería muy especial";
-const bankInfo = {
-  name: "Valentina Rodríguez",
-  account: "1234 5678 9012 3456",
-  clabe: "012345678901234567",
-  bank: "BBVA",
-};
+  "Si deseas hacerme un regalo, un detalle en efectivo o tarjetas de regalo sería muy especial";
+
+// Gift card options with denominations
+const giftCards = [
+  {
+    name: "Amazon",
+    color: "#000000",
+    textColor: "#ff9900",
+    denominations: ["$300", "$500", "$1000"],
+    description: "Tarjeta de regalo para comprar en línea",
+    link: "https://www.amazon.com.mx/Tarjeta-de-Regalo-Digital-Amazon-com-mx/dp/B07PMMFSPC/ref=lp_19117234011_1_2?pf_rd_p=a8422b71-27d5-4a7d-8254-0c9e97c83f02&pf_rd_r=7JJ8AN2Q8T1D9GX0AH2V&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D",
+  },
+  {
+    name: "Liverpool",
+    color: "#e10098",
+    textColor: "#ffffff",
+    denominations: ["$300", "$500", "$1000"],
+    description: "Tarjeta de regalo para tienda departamental",
+    link: "https://www.liverpool.com.mx/tienda/browse/storelocator",
+  },
+  {
+    name: "Coppel",
+    color: "#14549C",
+    textColor: "#ffffff",
+    denominations: ["4169 1614 7144 2565", "", ""],
+    description: "Luz Viridiana Guerra García",
+    isCopyable: true,
+  },
+];
 ---
 
 <section class="gift-section section" id="gift">
@@ -42,26 +64,95 @@ const bankInfo = {
         set:html={animateWords(giftDescription, 0.2)}
       />
 
-      <div class="bank-info scroll-animate" data-animation="fade-up">
-        <div class="bank-card">
-          <div class="bank-card-header">
-            <span class="bank-name">{bankInfo.bank}</span>
-            <span class="card-chip">💳</span>
-          </div>
-          <div class="bank-card-number">
-            <span>{bankInfo.account}</span>
-          </div>
-          <div class="bank-card-details">
-            <span class="card-holder">{bankInfo.name}</span>
-          </div>
-        </div>
-
-        <div class="bank-details">
-          <p><strong>CLABE:</strong> {bankInfo.clabe}</p>
-          <p><strong>Banco:</strong> {bankInfo.bank}</p>
-          <p><strong>Titular:</strong> {bankInfo.name}</p>
-        </div>
+      <div class="gift-cards-container scroll-animate" data-animation="fade-up">
+        {
+          giftCards.map((card, cardIndex) => (
+            <div
+              class="gift-card-stack"
+              style={`animation-delay: ${cardIndex * 0.2}s`}
+            >
+              <div class="gift-card-stack-inner">
+                {card.denominations.map((amount, index) => (
+                  <a
+                    href={card.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class={`amazon-gift-card ${card.isCopyable ? "copyable" : ""}`}
+                    style={`--rotation: ${(index - 1) * 5}deg; --y-offset: ${index * 10}px; z-index: ${3 - index}; animation-delay: ${index * 0.1 + cardIndex * 0.2}s;`}
+                    data-value={card.isCopyable ? amount : null}
+                    data-name={card.isCopyable ? card.description : null}
+                  >
+                    <div
+                      class="amazon-gift-card-inner"
+                      style={`background-color: ${card.color};`}
+                    >
+                      <div class="amazon-gift-card-logo">
+                        {card.name === "Amazon" ? (
+                          <>
+                            <span class="amazon-logo">amazon</span>
+                            <span
+                              class="gift-card-text"
+                              style={`color: ${card.textColor};`}
+                            >
+                              gift card
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            <span
+                              class="liverpool-logo"
+                              style={`color: ${card.textColor};`}
+                            >
+                              {card.name}
+                            </span>
+                            {card.name === "Liverpool" && (
+                              <span
+                                class="gift-card-text"
+                                style={`color: ${card.textColor}; opacity: 0.8;`}
+                              >
+                                gift card
+                              </span>
+                            )}
+                          </>
+                        )}
+                        {card.isCopyable && (
+                          <span
+                            class="account-holder"
+                            style={`color: ${card.textColor}; opacity: 0.8;`}
+                          >
+                            {card.description}
+                          </span>
+                        )}
+                      </div>
+                      <div
+                        class="amazon-gift-card-amount"
+                        style={`color: ${card.textColor};`}
+                      >
+                        {amount}
+                      </div>
+                      {card.isCopyable && (
+                        <div class="copy-button">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            viewBox="0 0 16 16"
+                          >
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))
+        }
       </div>
+      <div class="copy-notification">¡Copiado al portapapeles!</div>
     </div>
   </div>
 </section>
@@ -70,6 +161,10 @@ const bankInfo = {
   document.addEventListener("DOMContentLoaded", function () {
     const envelope = document.querySelector(".envelope");
     const fallingMoney = document.querySelector(".falling-money");
+    const copyableCards = document.querySelectorAll(
+      ".amazon-gift-card.copyable"
+    );
+    const copyNotification = document.querySelector(".copy-notification");
 
     // Create falling money animation
     function createMoneyRain() {
@@ -84,7 +179,7 @@ const bankInfo = {
     }
 
     // Envelope animation on scroll
-    const observer = new IntersectionObserver(
+    const envelopeObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -103,7 +198,55 @@ const bankInfo = {
 
     const giftSection = document.querySelector(".gift-section");
     if (giftSection) {
-      observer.observe(giftSection);
+      envelopeObserver.observe(giftSection);
+    }
+
+    // Copy to clipboard functionality
+    const copyButtons = document.querySelectorAll(".copy-button");
+    copyButtons.forEach((button) => {
+      button.addEventListener("click", function (this: HTMLElement, e: Event) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const card = this.closest(".amazon-gift-card") as HTMLElement;
+        const textToCopy = card.getAttribute("data-value");
+        const nameToCopy = card.getAttribute("data-name");
+
+        if (textToCopy) {
+          // Create a formatted text with both name and CLABE
+          const fullText = `Nombre:${nameToCopy}\nNúmero de tarjeta: ${textToCopy}`;
+
+          navigator.clipboard
+            .writeText(fullText)
+            .then(() => {
+              copyNotification?.classList.add("show");
+              setTimeout(() => {
+                copyNotification?.classList.remove("show");
+              }, 2000);
+            })
+            .catch((err) => {
+              console.error("Error copying text: ", err);
+            });
+        }
+      });
+    });
+
+    // Add intersection observer for animation
+    const cardAnimationObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            giftSection?.classList.add("in-view");
+          } else {
+            giftSection?.classList.remove("in-view");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (giftSection) {
+      cardAnimationObserver.observe(giftSection);
     }
   });
 </script>
