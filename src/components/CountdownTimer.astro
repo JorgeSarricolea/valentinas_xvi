@@ -1,0 +1,115 @@
+---
+// CountdownTimer.astro
+import "../styles/countdown.css";
+
+// Event date - March 29, 2025 at 8:00 PM Mexico City time (UTC-6)
+const eventDate = "2025-03-29T20:00:00-06:00";
+---
+
+<section class="countdown-section section" id="countdown">
+  <div class="section-content scroll-animate" data-animation="fade-up">
+    <h2 class="letter-container">
+      <span class="letter-animate" style="transition-delay: 0.05s;">F</span>
+      <span class="letter-animate" style="transition-delay: 0.1s;">A</span>
+      <span class="letter-animate" style="transition-delay: 0.15s;">L</span>
+      <span class="letter-animate" style="transition-delay: 0.2s;">T</span>
+      <span class="letter-animate" style="transition-delay: 0.25s;">A</span>
+      <span class="letter-animate" style="transition-delay: 0.25s;">N</span>
+    </h2>
+
+    <div class="countdown-container scroll-animate" data-animation="fade-up">
+      <div class="countdown-timer">
+        <div class="countdown-item">
+          <span id="days" class="countdown-value">00</span>
+          <span class="countdown-label">Días</span>
+        </div>
+        <div class="countdown-item">
+          <span id="hours" class="countdown-value">00</span>
+          <span class="countdown-label">Horas</span>
+        </div>
+        <div class="countdown-item">
+          <span id="minutes" class="countdown-value">00</span>
+          <span class="countdown-label">Minutos</span>
+        </div>
+        <div class="countdown-item">
+          <span id="seconds" class="countdown-value">00</span>
+          <span class="countdown-label">Segundos</span>
+        </div>
+      </div>
+      <p class="countdown-message">¡Hasta la gran celebración!</p>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ eventDate }}>
+  // Function to calculate and update the countdown
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const eventTime = new Date(eventDate).getTime();
+    const timeRemaining = eventTime - now;
+
+    // If the event has passed
+    if (timeRemaining < 0) {
+      document.getElementById("days").textContent = "00";
+      document.getElementById("hours").textContent = "00";
+      document.getElementById("minutes").textContent = "00";
+      document.getElementById("seconds").textContent = "00";
+      document.querySelector(".countdown-message").textContent =
+        "¡La celebración ha comenzado!";
+      return;
+    }
+
+    // Calculate time units
+    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor(
+      (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+    );
+    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+    // Add leading zeros if needed
+    const formatNumber = (num) => (num < 10 ? `0${num}` : num);
+
+    // Update the DOM
+    document.getElementById("days").textContent = formatNumber(days);
+    document.getElementById("hours").textContent = formatNumber(hours);
+    document.getElementById("minutes").textContent = formatNumber(minutes);
+    document.getElementById("seconds").textContent = formatNumber(seconds);
+
+    // Add animation class to changing values
+    if (seconds === 59) {
+      document.getElementById("minutes").classList.add("flip");
+      setTimeout(() => {
+        document.getElementById("minutes").classList.remove("flip");
+      }, 500);
+    }
+    if (minutes === 59 && seconds === 59) {
+      document.getElementById("hours").classList.add("flip");
+      setTimeout(() => {
+        document.getElementById("hours").classList.remove("flip");
+      }, 500);
+    }
+    if (hours === 23 && minutes === 59 && seconds === 59) {
+      document.getElementById("days").classList.add("flip");
+      setTimeout(() => {
+        document.getElementById("days").classList.remove("flip");
+      }, 500);
+    }
+
+    document.getElementById("seconds").classList.add("pulse");
+    setTimeout(() => {
+      document.getElementById("seconds").classList.remove("pulse");
+    }, 500);
+  }
+
+  // Update the countdown every second
+  document.addEventListener("DOMContentLoaded", function () {
+    // Initial update
+    updateCountdown();
+
+    // Update every second
+    setInterval(updateCountdown, 1000);
+  });
+</script>
