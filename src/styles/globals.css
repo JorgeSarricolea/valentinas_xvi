@@ -191,7 +191,8 @@ p {
 /* Common button styling */
 .cta-button a {
   display: block;
-  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
   background-color: var(--dark-pink);
   color: white;
   padding: var(--spacing-sm) var(--spacing-lg);
