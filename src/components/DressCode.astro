@@ -1,0 +1,46 @@
+---
+import clothes from "../assets/imgs/clothes.png";
+import { animateWords } from "../utils/animations.js";
+import "../styles/dress-code.css";
+const dressCodeDescription =
+  "Te invitamos a vestir elegante para esta ocasión especial";
+const formalAttire = "Formal";
+---
+
+<section class="dress-code-section section" id="dress-code">
+  <div class="section-content scroll-animate" data-animation="fade-up">
+    <h2 class="letter-container">
+      <span class="letter-animate" style="transition-delay: 0.05s;">V</span>
+      <span class="letter-animate" style="transition-delay: 0.1s;">E</span>
+      <span class="letter-animate" style="transition-delay: 0.15s;">S</span>
+      <span class="letter-animate" style="transition-delay: 0.2s;">T</span>
+      <span class="letter-animate" style="transition-delay: 0.25s;">I</span>
+      <span class="letter-animate" style="transition-delay: 0.3s;">M</span>
+      <span class="letter-animate" style="transition-delay: 0.35s;">E</span>
+      <span class="letter-animate" style="transition-delay: 0.4s;">N</span>
+      <span class="letter-animate" style="transition-delay: 0.45s;">T</span>
+      <span class="letter-animate" style="transition-delay: 0.5s;">A</span>
+    </h2>
+
+    <div class="dress-code-container scroll-animate" data-animation="fade-up">
+      <div
+        class="dress-code-image-container scroll-animate"
+        data-animation="fade-right"
+      >
+        <img
+          src={clothes.src}
+          alt="Formal attire illustration"
+          class="dress-code-image"
+        />
+      </div>
+
+      <div class="dress-code-info scroll-animate" data-animation="fade-left">
+        <h3 class="dress-code-title">{formalAttire}</h3>
+        <p
+          class="dress-code-description word-container"
+          set:html={animateWords(dressCodeDescription, 0.2)}
+        />
+      </div>
+    </div>
+  </div>
+</section>

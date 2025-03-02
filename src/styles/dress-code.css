@@ -1,0 +1,64 @@
+.dress-code-section {
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+  padding: var(--spacing-xl);
+}
+
+.dress-code-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  margin: var(--spacing-lg) 0;
+  flex-wrap: wrap;
+}
+
+.dress-code-image-container {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+.dress-code-image {
+  width: 90%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.dress-code-info {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  padding: var(--spacing-md);
+}
+
+.dress-code-title {
+  font-family: "Playfair Display", serif;
+  font-size: var(--heading-small);
+  color: var(--dark-pink);
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+.dress-code-description {
+  font-size: var(--text-regular);
+  color: var(--darker-pink);
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .dress-code-container {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .dress-code-image-container,
+  .dress-code-info {
+    min-width: 100%;
+  }
+}
