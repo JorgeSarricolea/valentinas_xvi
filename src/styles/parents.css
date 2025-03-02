@@ -1,0 +1,94 @@
+.parents-section {
+  background-color: white;
+}
+
+.parents-details {
+  margin: var(--spacing-lg) 0;
+}
+
+.message {
+  font-size: var(--text-regular);
+  color: var(--darker-pink);
+  margin-bottom: var(--spacing-md);
+  font-style: italic;
+}
+
+.names {
+  font-size: var(--heading-small);
+  font-weight: 600;
+  color: var(--dark-pink);
+  font-family: "Playfair Display", serif;
+}
+
+.divider {
+  width: 80px;
+  height: 2px;
+  background-color: var(--dark-pink);
+  margin: 2rem auto;
+}
+
+.rsvp-container {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-md);
+  border: 1px solid var(--light-darker-pink);
+  border-radius: 10px;
+  background-color: rgba(242, 220, 216, 0.3);
+}
+
+.rsvp-text {
+  font-size: var(--text-regular);
+  color: var(--dark-pink);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 600;
+}
+
+.contact-info p {
+  margin: var(--spacing-xs) 0;
+  color: var(--darker-pink);
+}
+
+/* WhatsApp link styles */
+.whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--darker-pink);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.whatsapp-link:hover {
+  color: #25D366; /* WhatsApp green color */
+}
+
+.whatsapp-icon {
+  margin-right: 8px;
+  color: #25D366;
+}
+
+/* Ensure the icon doesn't change color on hover */
+.whatsapp-link:hover .whatsapp-icon {
+  color: #25D366;
+}
+
+/* Email link styles */
+.email-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--darker-pink);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.email-link:hover {
+  color: #4285F4; /* Google blue color */
+}
+
+.email-icon {
+  margin-right: 8px;
+  color: #DB4437; /* Google red color */
+}
+
+/* Ensure the icon doesn't change color on hover */
+.email-link:hover .email-icon {
+  color: #DB4437;
+} 
