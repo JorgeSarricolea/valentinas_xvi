@@ -1,6 +1,13 @@
 ---
 import flowers from "../assets/imgs/flowers_2.png";
 import pampas from "../assets/imgs/pampas_1.png";
+import petal1 from "../assets/imgs/petal_1.png";
+import petal2 from "../assets/imgs/petal_2.png";
+import petal3 from "../assets/imgs/petal_3.png";
+import petal4 from "../assets/imgs/petal_4.png";
+import petal5 from "../assets/imgs/petal_5.png";
+import petal6 from "../assets/imgs/petal_6.png";
+import petal7 from "../assets/imgs/petal_7.png";
 import "../styles/globals.css";
 import "../styles/hero.css";
 import { animateWords } from "../utils/animations.js";
@@ -57,7 +64,9 @@ const subtitleText = "Mis 16 años";
     <div class="mouse"></div>
   </div>
 
-  <script>
+  <script
+    define:vars={{ petal1, petal2, petal3, petal4, petal5, petal6, petal7 }}
+  >
     // Force immediate animation of hero elements with enhanced fade effects
     document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
@@ -99,15 +108,15 @@ const subtitleText = "Mis 16 años";
         // Clear existing flowers
         container.innerHTML = "";
 
-        // Petal image paths (assuming these are the 7 petal images in your imgs folder)
+        // Petal image paths using imported images
         const petalPaths = [
-          "/src/assets/imgs/petal_1.png",
-          "/src/assets/imgs/petal_2.png",
-          "/src/assets/imgs/petal_3.png",
-          "/src/assets/imgs/petal_4.png",
-          "/src/assets/imgs/petal_5.png",
-          "/src/assets/imgs/petal_6.png",
-          "/src/assets/imgs/petal_7.png",
+          petal1.src,
+          petal2.src,
+          petal3.src,
+          petal4.src,
+          petal5.src,
+          petal6.src,
+          petal7.src,
         ];
 
         // Create flower petals
