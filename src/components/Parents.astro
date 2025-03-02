@@ -3,7 +3,6 @@ import "../styles/parents.css";
 import { animateWords } from "../utils/animations.js";
 
 const parentsText = "Luz Viridiana Guerra García";
-const messageText = "¡Celebremos juntos mis Dulces 16!";
 const whatsappNumber = "9381047146";
 const whatsappMessage =
   "Hola Viridiana, te confirmo mi asistencia para la fiesta de Valentina";
@@ -24,10 +23,6 @@ const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
     </h2>
 
     <div class="parents-details">
-      <p
-        class="message word-container"
-        set:html={animateWords(messageText, 0.2)}
-      />
       <p
         class="names word-container"
         set:html={animateWords(parentsText, 0.5)}
