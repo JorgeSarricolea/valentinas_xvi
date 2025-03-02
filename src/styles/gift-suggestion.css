@@ -1,0 +1,288 @@
+/* Gift Suggestion Styles */
+.gift-section {
+  background-color: var(--light-light-darker-pink);
+  position: relative;
+  overflow: hidden;
+}
+
+.gift-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23a65d5d' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  z-index: 1;
+}
+
+.gift-container {
+  margin: var(--spacing-lg) 0;
+  position: relative;
+  z-index: 2;
+}
+
+.gift-title {
+  font-size: var(--heading-small);
+  font-weight: 600;
+  color: var(--dark-pink);
+  margin-bottom: var(--spacing-sm);
+  font-family: "Playfair Display", serif;
+}
+
+.gift-description {
+  font-size: var(--text-regular);
+  color: var(--darker-pink);
+  margin: var(--spacing-md) 0;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Envelope Animation */
+.envelope-animation {
+  position: relative;
+  height: 200px;
+  margin: var(--spacing-lg) 0;
+}
+
+.envelope {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 120px;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: 2;
+}
+
+.envelope::before, .envelope::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  height: 30px;
+  background-color: #e6e6e6;
+  z-index: 3;
+}
+
+.envelope::before {
+  left: 0;
+  transform-origin: bottom right;
+  transform: skew(20deg, 0);
+}
+
+.envelope::after {
+  right: 0;
+  transform-origin: bottom left;
+  transform: skew(-20deg, 0);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #e6e6e6;
+  clip-path: polygon(0 0, 50% 50%, 100% 0);
+  transform-origin: top;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: 4;
+}
+
+.envelope-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark-pink);
+  transform-origin: top;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.2s;
+  z-index: 3;
+}
+
+.envelope-letter {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.4s;
+  z-index: 2;
+}
+
+.envelope.active {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.envelope.active .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.envelope.active .envelope-cover {
+  transform: rotateX(180deg);
+}
+
+.envelope.active .envelope-letter {
+  transform: translateY(0);
+}
+
+/* Falling Money Animation */
+.falling-money {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.money {
+  position: absolute;
+  top: -20px;
+  width: 30px;
+  height: 15px;
+  background-color: #c9e6c9;
+  border: 1px solid #a6d8a6;
+  border-radius: 2px;
+  animation: falling linear infinite;
+  opacity: 0;
+}
+
+.money::before {
+  content: '$';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #2e7d32;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+@keyframes falling {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(300px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Bank Card Styling */
+.bank-info {
+  margin-top: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.bank-card {
+  width: 300px;
+  height: 180px;
+  background: linear-gradient(135deg, var(--dark-pink), var(--darker-pink));
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(166, 93, 93, 0.2);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.bank-card::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.bank-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bank-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.card-chip {
+  font-size: 1.5rem;
+}
+
+.bank-card-number {
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  margin: 20px 0;
+  word-spacing: 8px;
+}
+
+.bank-card-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.card-holder {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bank-details {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: var(--spacing-md);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  width: 300px;
+}
+
+.bank-details p {
+  margin: var(--spacing-xs) 0;
+  color: var(--darker-pink);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .bank-card {
+    width: 280px;
+    height: 160px;
+    padding: 15px;
+  }
+  
+  .bank-card-number {
+    font-size: 1.1rem;
+  }
+  
+  .bank-details {
+    width: 280px;
+  }
+} 

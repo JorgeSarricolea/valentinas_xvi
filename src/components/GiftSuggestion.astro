@@ -1,0 +1,109 @@
+---
+import "../styles/gift-suggestion.css";
+import { animateWords } from "../utils/animations.js";
+
+const giftTitle = "Lluvia de Sobres";
+const giftDescription =
+  "Si deseas hacerme un regalo, un detalle en efectivo sería muy especial";
+const bankInfo = {
+  name: "Valentina Rodríguez",
+  account: "1234 5678 9012 3456",
+  clabe: "012345678901234567",
+  bank: "BBVA",
+};
+---
+
+<section class="gift-section section" id="gift">
+  <div class="section-content scroll-animate" data-animation="fade-up">
+    <h2 class="letter-container">
+      <span class="letter-animate" style="transition-delay: 0.05s;">R</span>
+      <span class="letter-animate" style="transition-delay: 0.1s;">E</span>
+      <span class="letter-animate" style="transition-delay: 0.15s;">G</span>
+      <span class="letter-animate" style="transition-delay: 0.2s;">A</span>
+      <span class="letter-animate" style="transition-delay: 0.25s;">L</span>
+      <span class="letter-animate" style="transition-delay: 0.3s;">O</span>
+      <span class="letter-animate" style="transition-delay: 0.35s;">S</span>
+    </h2>
+
+    <div class="gift-container scroll-animate" data-animation="fade-up">
+      <div class="envelope-animation">
+        <div class="envelope">
+          <div class="envelope-flap"></div>
+          <div class="envelope-cover"></div>
+          <div class="envelope-letter">
+            <p class="gift-title">{giftTitle}</p>
+          </div>
+        </div>
+        <div class="falling-money"></div>
+      </div>
+
+      <p
+        class="gift-description word-container"
+        set:html={animateWords(giftDescription, 0.2)}
+      />
+
+      <div class="bank-info scroll-animate" data-animation="fade-up">
+        <div class="bank-card">
+          <div class="bank-card-header">
+            <span class="bank-name">{bankInfo.bank}</span>
+            <span class="card-chip">💳</span>
+          </div>
+          <div class="bank-card-number">
+            <span>{bankInfo.account}</span>
+          </div>
+          <div class="bank-card-details">
+            <span class="card-holder">{bankInfo.name}</span>
+          </div>
+        </div>
+
+        <div class="bank-details">
+          <p><strong>CLABE:</strong> {bankInfo.clabe}</p>
+          <p><strong>Banco:</strong> {bankInfo.bank}</p>
+          <p><strong>Titular:</strong> {bankInfo.name}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const envelope = document.querySelector(".envelope");
+    const fallingMoney = document.querySelector(".falling-money");
+
+    // Create falling money animation
+    function createMoneyRain() {
+      for (let i = 0; i < 15; i++) {
+        const money = document.createElement("div");
+        money.classList.add("money");
+        money.style.left = `${Math.random() * 100}%`;
+        money.style.animationDelay = `${Math.random() * 5}s`;
+        money.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        fallingMoney?.appendChild(money);
+      }
+    }
+
+    // Envelope animation on scroll
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            envelope?.classList.add("active");
+            setTimeout(createMoneyRain, 1000);
+          } else {
+            envelope?.classList.remove("active");
+            if (fallingMoney) {
+              fallingMoney.innerHTML = "";
+            }
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    const giftSection = document.querySelector(".gift-section");
+    if (giftSection) {
+      observer.observe(giftSection);
+    }
+  });
+</script>
