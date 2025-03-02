@@ -3,16 +3,21 @@
   background-color: var(--light-pink);
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .countdown-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at center, rgba(216, 121, 106, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle at center,
+    rgba(216, 121, 106, 0.1) 0%,
+    transparent 70%
+  );
   z-index: 1;
 }
 
@@ -106,17 +111,17 @@
   .countdown-timer {
     gap: var(--spacing-sm);
   }
-  
+
   .countdown-item {
     min-width: 60px;
   }
-  
+
   .countdown-value {
     font-size: 1.8rem;
     padding: 0.4rem 0.8rem;
     min-width: 50px;
   }
-  
+
   .countdown-label {
     font-size: 0.7rem;
   }
@@ -125,7 +130,7 @@
 /* Decorative elements */
 .countdown-container::before,
 .countdown-container::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100px;
   height: 100px;
@@ -144,4 +149,4 @@
 .countdown-container::after {
   bottom: -50px;
   right: -50px;
-} 
+}
