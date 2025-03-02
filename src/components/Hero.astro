@@ -1,0 +1,193 @@
+---
+import flowers from "../assets/imgs/flowers_2.png";
+import pampas from "../assets/imgs/pampas_1.png";
+import "../styles/globals.css";
+import "../styles/hero.css";
+import { animateWords } from "../utils/animations.js";
+
+const subtitleText = "Mis 16 años";
+---
+
+<div class="hero-container">
+  <div class="pampas-container left scroll-animate" data-animation="fade-right">
+    <img
+      src={pampas.src}
+      alt="Decorative pampas grass"
+      class="pampas-image parallax"
+      data-speed="0.2"
+    />
+  </div>
+
+  <div class="pampas-container right scroll-animate" data-animation="fade-left">
+    <img
+      src={pampas.src}
+      alt="Decorative pampas grass"
+      class="pampas-image parallax"
+      data-speed="-0.2"
+    />
+  </div>
+
+  <div class="hero-image-container scroll-animate" data-animation="zoom-in">
+    <img
+      src={flowers.src}
+      alt="Decorative flowers"
+      class="hero-image parallax"
+      data-speed="0.1"
+    />
+  </div>
+
+  <div class="section-content scroll-animate" data-animation="fade-up">
+    <h2 class="letter-container">
+      <span class="letter-animate" style="transition-delay: 0.05s;">V</span>
+      <span class="letter-animate" style="transition-delay: 0.1s;">A</span>
+      <span class="letter-animate" style="transition-delay: 0.15s;">L</span>
+      <span class="letter-animate" style="transition-delay: 0.2s;">E</span>
+      <span class="letter-animate" style="transition-delay: 0.25s;">N</span>
+      <span class="letter-animate" style="transition-delay: 0.3s;">T</span>
+      <span class="letter-animate" style="transition-delay: 0.35s;">I</span>
+      <span class="letter-animate" style="transition-delay: 0.4s;">N</span>
+      <span class="letter-animate" style="transition-delay: 0.45s;">A</span>
+    </h2>
+  </div>
+  <p class="word-container" set:html={animateWords(subtitleText, 0.5)} />
+
+  <div class="falling-flowers-container"></div>
+
+  <div class="scroll-indicator">
+    <div class="mouse"></div>
+  </div>
+
+  <script>
+    // Force immediate animation of hero elements with enhanced fade effects
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => {
+        const heroContent = document.querySelector(".hero-content");
+        if (heroContent) {
+          heroContent.classList.add("scrolled");
+          heroContent.classList.add("scroll-down");
+
+          // Animate letters with staggered fade-in
+          const letters = heroContent.querySelectorAll(".letter-animate");
+          letters.forEach((letter, index) => {
+            setTimeout(() => {
+              letter.classList.add("fade-in");
+              letter.classList.add("scroll-down");
+              letter.classList.add("scrolled");
+            }, index * 60); // Staggered timing for more dramatic effect
+          });
+
+          // Animate words with staggered fade-in
+          const words = heroContent.querySelectorAll(".word-animate");
+          words.forEach((word, index) => {
+            setTimeout(
+              () => {
+                word.classList.add("fade-in");
+                word.classList.add("scroll-down");
+                word.classList.add("scrolled");
+              },
+              500 + index * 100
+            ); // Start after letters with staggered timing
+          });
+        }
+      }, 300);
+
+      // Create falling flowers animation
+      const createFallingFlowers = () => {
+        const container = document.querySelector(".falling-flowers-container");
+        if (!container) return;
+
+        // Clear existing flowers
+        container.innerHTML = "";
+
+        // Petal image paths (assuming these are the 7 petal images in your imgs folder)
+        const petalPaths = [
+          "/src/assets/imgs/petal_1.png",
+          "/src/assets/imgs/petal_2.png",
+          "/src/assets/imgs/petal_3.png",
+          "/src/assets/imgs/petal_4.png",
+          "/src/assets/imgs/petal_5.png",
+          "/src/assets/imgs/petal_6.png",
+          "/src/assets/imgs/petal_7.png",
+        ];
+
+        // Create flower petals
+        for (let i = 0; i < 50; i++) {
+          const flower = document.createElement("img");
+          flower.classList.add("falling-flower");
+
+          // Select a random petal image
+          const randomPetalIndex = Math.floor(
+            Math.random() * petalPaths.length
+          );
+          flower.src = petalPaths[randomPetalIndex];
+
+          // Randomize flower appearance
+          const size = Math.random() * 20 + 10; // 15-35px
+          const opacity = Math.random() * 0.6 + 0.4; // 0.4-1.0
+
+          flower.style.width = `${size}px`;
+          flower.style.height = "auto"; // Maintain aspect ratio
+          flower.style.opacity = opacity.toString();
+
+          // Randomize position and animation
+          flower.style.left = `${Math.random() * 100}%`;
+          flower.style.animationDelay = `${Math.random() * 20}s`; // Spread out delays up to 20s
+          flower.style.animationDuration = `${Math.random() * 10 + 15}s`; // 15-25s duration
+
+          // Add to container
+          container.appendChild(flower);
+        }
+      };
+
+      // Start flower animation once
+      createFallingFlowers();
+
+      // Add scroll listener for fade-out effect when scrolling away
+      window.addEventListener("scroll", () => {
+        const scrollY = window.scrollY;
+        const heroContent = document.querySelector(".hero-content");
+
+        if (scrollY > 100) {
+          // Start fading out letters when scrolling down
+          const letters = heroContent?.querySelectorAll(".letter-animate");
+          letters?.forEach((letter, index) => {
+            setTimeout(() => {
+              letter?.classList.add("fade-out");
+            }, index * 30);
+          });
+
+          // Fade out words slightly later
+          const words = heroContent?.querySelectorAll(".word-animate");
+          words?.forEach((word, index) => {
+            setTimeout(
+              () => {
+                word?.classList.add("fade-out");
+              },
+              200 + index * 50
+            );
+          });
+        } else if (scrollY < 50) {
+          // Fade back in when returning to top
+          const letters = heroContent?.querySelectorAll(".letter-animate");
+          letters?.forEach((letter, index) => {
+            letter?.classList.remove("fade-out");
+            setTimeout(() => {
+              letter?.classList.add("fade-in");
+            }, index * 30);
+          });
+
+          const words = heroContent?.querySelectorAll(".word-animate");
+          words?.forEach((word, index) => {
+            word?.classList.remove("fade-out");
+            setTimeout(
+              () => {
+                word?.classList.add("fade-in");
+              },
+              200 + index * 50
+            );
+          });
+        }
+      });
+    });
+  </script>
+</div>

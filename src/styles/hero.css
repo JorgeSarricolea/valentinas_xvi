@@ -1,0 +1,784 @@
+/* Hero-specific styles */
+.hero-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0 var(--spacing-sm);
+}
+
+.hero-image-container {
+  position: absolute;
+  top: -150px;
+  width: 100%;
+  height: 40%;
+  overflow: hidden;
+  z-index: 2;
+  rotate: 180deg;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.pampas-container {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.8;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.pampas-container.left {
+  left: -10px;
+  top: 0;
+  rotate: 180deg;
+  transform: rotate(15deg) scale(0.6);
+}
+
+.pampas-container.right {
+  right: -10px;
+  top: 0;
+  rotate: 180deg;
+  transform: rotate(-15deg) scale(0.6) scaleX(-1);
+}
+
+.pampas-image {
+  max-width: 300px;
+  height: auto;
+}
+
+.hero-content {
+  z-index: 3;
+  text-align: center;
+  margin-top: 15vh;
+  opacity: 1 !important;
+}
+
+.name {
+  font-size: var(--heading-large);
+  font-weight: 700;
+  color: var(--dark-pink);
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.event {
+  font-size: var(--heading-small);
+  font-weight: 400;
+  color: var(--dark-pink);
+  margin: 0.5rem 0 0;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--dark-pink);
+  opacity: 1;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.scroll-indicator.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+  pointer-events: none;
+}
+
+.mouse {
+  width: 25px;
+  height: 40px;
+  border: 2px solid var(--dark-pink);
+  border-radius: 20px;
+  position: relative;
+  animation: containerPulse 4s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+}
+
+.mouse::before {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--dark-pink);
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 10px;
+  animation: scrollDot 4.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+}
+
+@keyframes scrollDot {
+  0%,
+  10% {
+    opacity: 0;
+    top: 10px;
+  }
+  30%,
+  60% {
+    opacity: 1;
+    top: 10px;
+  }
+  90%,
+  100% {
+    opacity: 0;
+    top: 30px;
+  }
+}
+
+@keyframes containerPulse {
+  0%,
+  10% {
+    opacity: 0.3;
+    transform: translateY(10px);
+  }
+  30%,
+  60% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(10px);
+  }
+}
+
+/* Hero-specific animation overrides */
+.hero-content .letter-animate.scrolled {
+  animation: glow 3s ease-in-out infinite alternate;
+  animation-delay: 1s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .name {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+  }
+
+  .event {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  .pampas-container.left {
+    left: -10px;
+    transform: rotate(15deg) scale(0.6);
+  }
+
+  .pampas-container.right {
+    right: -10px;
+    transform: rotate(-15deg) scale(0.6) scaleX(-1);
+  }
+}
+
+/* Content sections */
+.content-sections {
+  margin-top: 100vh;
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem;
+}
+
+.section-content {
+  text-align: center;
+  max-width: 600px;
+  z-index: 2;
+}
+
+.section-content h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  color: var(--dark-pink);
+  margin-bottom: 1rem;
+}
+
+.section-content p {
+  font-size: 1.2rem;
+  color: var(--darker-pink);
+  line-height: 1.6;
+}
+
+.flower-accent,
+.pampas-accent {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.7;
+  max-width: 200px;
+}
+
+.flower-accent.left,
+.pampas-accent.left {
+  left: 5%;
+}
+
+.flower-accent.right,
+.pampas-accent.right {
+  right: 5%;
+}
+
+.accent-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.flower-accent .accent-image {
+  transform: scale(0.6);
+}
+
+.pampas-accent .accent-image {
+  transform: scale(0.8);
+}
+
+/* Adjust AOS animations to work better with scroll */
+[data-aos] {
+  transition-duration: 800ms !important;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .section {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .section-content h2 {
+    font-size: 2rem;
+  }
+
+  .section-content p {
+    font-size: 1rem;
+  }
+
+  .flower-accent,
+  .pampas-accent {
+    max-width: 120px;
+  }
+
+  .flower-accent.left,
+  .pampas-accent.left {
+    left: 0;
+    top: 10%;
+  }
+
+  .flower-accent.right,
+  .pampas-accent.right {
+    right: 0;
+    bottom: 10%;
+  }
+}
+
+/* Add these styles to your existing hero.css */
+
+/* Base styles for scroll animations */
+.scroll-animate {
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-animate.scrolled {
+  opacity: 1;
+}
+
+/* Animation variations */
+.scroll-animate.fade-up.scrolled {
+  transform: translateY(0);
+}
+
+.scroll-animate.fade-up {
+  transform: translateY(50px);
+}
+
+.scroll-animate.fade-right.scrolled {
+  transform: translateX(0);
+}
+
+.scroll-animate.fade-right {
+  transform: translateX(-50px);
+}
+
+.scroll-animate.fade-left.scrolled {
+  transform: translateX(0);
+}
+
+.scroll-animate.fade-left {
+  transform: translateX(50px);
+}
+
+.scroll-animate.zoom-in.scrolled {
+  transform: scale(1);
+}
+
+.scroll-animate.zoom-in {
+  transform: scale(0.8);
+}
+
+/* Word-by-word animation */
+.word-container {
+  overflow: hidden;
+  line-height: 1.6;
+}
+
+.word-animate {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-right: 0.2em;
+  will-change: opacity, transform;
+}
+
+.section-content.scrolled .word-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Enhanced Apple-style text effects */
+.section-content h2 {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.section-content h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--dark-pink);
+  transform: translateX(-50%);
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+}
+
+.section-content.scrolled h2::after {
+  width: 60px;
+}
+
+/* Improved bidirectional animations for letters */
+.letter-animate {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.letter-animate.scrolled {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Default animation (scroll down) */
+.scroll-down .letter-animate {
+  transform: translateY(60px) rotate(5deg);
+}
+
+/* Reverse animation (scroll up) */
+.scroll-up .letter-animate {
+  transform: translateY(-60px) rotate(-5deg);
+}
+
+/* Animated state */
+.scrolled .letter-animate {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg) !important;
+}
+
+/* Word animations with bidirectional support */
+.word-animate {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-right: 0.2em;
+}
+
+.word-animate.scrolled {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Default animation (scroll down) */
+.scroll-down .word-animate {
+  transform: translateY(40px);
+}
+
+/* Reverse animation (scroll up) */
+.scroll-up .word-animate {
+  transform: translateY(-40px);
+}
+
+/* Animated state */
+.scrolled .word-animate {
+  opacity: 1;
+  transform: translateY(0) !important;
+}
+
+/* Base animation classes */
+.scroll-animate {
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-animate.scrolled {
+  opacity: 1;
+}
+
+/* Bidirectional fade-up/down */
+.scroll-animate.fade-up.scroll-down {
+  transform: translateY(50px);
+}
+
+.scroll-animate.fade-up.scroll-up {
+  transform: translateY(-50px);
+}
+
+.scroll-animate.fade-up.scrolled {
+  transform: translateY(0);
+}
+
+/* Add a subtle glow effect to the hero title */
+.scrolled .letter-animate {
+  animation: glow 3s ease-in-out infinite alternate;
+  animation-delay: 1s;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px rgba(216, 121, 106, 0.1);
+  }
+  to {
+    text-shadow: 0 0 15px rgba(216, 121, 106, 0.3);
+  }
+}
+
+/* Hero title specific animations */
+.hero-content {
+  z-index: 3;
+  text-align: center;
+  margin-top: 15vh;
+  opacity: 1 !important;
+  transition: transform 1s ease;
+}
+
+.hero-content.scrolled {
+  opacity: 1;
+}
+
+/* Make sure the hero title is visible on page load */
+.hero-content .letter-animate,
+.hero-content .word-animate {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.hero-content.scrolled .letter-animate,
+.hero-content.scrolled .word-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ensure the hero content is immediately visible */
+body:not(.scrolled-down) .hero-content {
+  opacity: 1;
+}
+
+/* Auto-trigger animations for hero content when at top of page */
+body:not(.scrolled-down) .hero-content .letter-animate,
+body:not(.scrolled-down) .hero-content .word-animate {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg) !important;
+  animation: glow 3s ease-in-out infinite alternate;
+  animation-delay: 1s;
+}
+
+/* Ensure letter animations work properly */
+.letter-container {
+  display: inline-block;
+}
+
+.letter-animate {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.letter-animate.scrolled {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Word animation fixes */
+.word-container {
+  display: inline-block;
+}
+
+.word-animate {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-right: 0.2em;
+}
+
+.word-animate.scrolled {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add these styles to ensure scroll-up animations work properly */
+
+/* Bidirectional animations for letters */
+.letter-animate.scroll-down {
+  transform: translateY(60px) rotate(5deg);
+}
+
+.letter-animate.scroll-up {
+  transform: translateY(-60px) rotate(-5deg);
+}
+
+/* Bidirectional animations for words */
+.word-animate.scroll-down {
+  transform: translateY(40px);
+}
+
+.word-animate.scroll-up {
+  transform: translateY(-40px);
+}
+
+/* Bidirectional animations for scroll-animate elements */
+.scroll-animate.fade-up.scroll-down {
+  transform: translateY(50px);
+}
+
+.scroll-animate.fade-up.scroll-up {
+  transform: translateY(-50px);
+}
+
+/* Ensure scrolled state overrides direction transforms */
+.scrolled .letter-animate,
+.scrolled .word-animate {
+  opacity: 1 !important;
+  transform: translateY(0) rotate(0deg) !important;
+}
+
+.scroll-animate.scrolled {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Clean up redundant styles and optimize for mobile */
+
+/* Remove duplicate animation classes */
+.letter-animate {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.word-animate {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-right: 0.2em;
+}
+
+/* Simplify animation states */
+.letter-animate.scrolled,
+.word-animate.scrolled,
+.scroll-animate.scrolled {
+  opacity: 1 !important;
+  transform: translateY(0) rotate(0deg) !important;
+}
+
+/* Optimize for mobile */
+@media (max-width: 768px) {
+  .hero-container {
+    height: 100vh;
+    padding: 0 1rem;
+  }
+
+  .name {
+    font-size: 2.5rem !important;
+    text-transform: uppercase;
+  }
+
+  .event {
+    font-size: 1.5rem !important;
+    text-transform: uppercase;
+  }
+
+  .pampas-container.left {
+    left: -10px;
+    transform: rotate(15deg) scale(0.6);
+  }
+
+  .pampas-container.right {
+    right: -10px;
+    transform: rotate(-15deg) scale(0.6) scaleX(-1);
+  }
+
+  /* Optimize section spacing for mobile */
+  .section {
+    padding: 3rem 1rem;
+    min-height: auto;
+  }
+
+  .section-content {
+    padding: 0;
+  }
+
+  .section-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Improve touch targets for mobile */
+  .cta-button a {
+    padding: 1rem 2rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  /* Optimize scroll indicator for mobile */
+  .scroll-indicator {
+    bottom: 20px;
+  }
+
+  .mouse {
+    width: 25px;
+    height: 40px;
+  }
+}
+
+/* Ensure hero content is visible on mobile */
+.hero-content {
+  opacity: 1 !important;
+}
+
+/* Optimize animations for mobile performance */
+@media (max-width: 768px) {
+  /* Simplify animations for better performance on mobile */
+  .letter-animate,
+  .word-animate {
+    transition: opacity 0.5s ease, transform 0.8s ease;
+  }
+
+  /* Reduce animation complexity for better performance */
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 2px rgba(216, 121, 106, 0.1);
+    }
+    to {
+      text-shadow: 0 0 5px rgba(216, 121, 106, 0.2);
+    }
+  }
+}
+
+/* Add these styles for falling flowers animation */
+
+.falling-flowers-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.falling-flower {
+  position: absolute;
+  top: -50px;
+  animation: fallingFlower linear infinite;
+  z-index: 1;
+  filter: drop-shadow(0 0 3px rgba(166, 93, 93, 0.2));
+  pointer-events: none;
+}
+
+@keyframes fallingFlower {
+  0% {
+    transform: translateY(-50px) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg) translateX(100px);
+    opacity: 0;
+  }
+}
+
+/* Add some flower variations */
+.falling-flower:nth-child(2n) {
+  animation-duration: 15s;
+  animation-timing-function: ease-in-out;
+}
+
+.falling-flower:nth-child(3n) {
+  animation-name: fallingFlowerAlt;
+}
+
+.falling-flower:nth-child(5n) {
+  filter: hue-rotate(5deg) drop-shadow(0 0 3px rgba(166, 93, 93, 0.2));
+}
+
+.falling-flower:nth-child(7n) {
+  filter: hue-rotate(-5deg) drop-shadow(0 0 3px rgba(166, 93, 93, 0.2));
+}
+
+@keyframes fallingFlowerAlt {
+  0% {
+    transform: translateY(-50px) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(-360deg) translateX(-100px);
+    opacity: 0;
+  }
+}
