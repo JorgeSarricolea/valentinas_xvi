@@ -1,11 +1,38 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Hero from "../components/Hero.astro";
+import Parents from "../components/Parents.astro";
+import Location from "../components/Location.astro";
+import CountdownTimer from "../components/CountdownTimer.astro";
+import GiftSuggestion from "../components/GiftSuggestion.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Valentina's Sweet 16">
+  <main>
+    <Hero />
+    <Parents />
+    <Location />
+    <CountdownTimer />
+    <GiftSuggestion />
+    <div class="powered-by">
+      <a
+        href="https://jorgesarricolea.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Desarrollado por <span>Jorge Sarricolea</span></a
+      >
+    </div>
+  </main>
 </Layout>
+
+<script>
+  import { initScrollAnimations } from "../utils/animations.js";
+
+  // Initialize animations when the DOM is loaded
+  document.addEventListener("DOMContentLoaded", function () {
+    // Small delay to ensure all elements are properly rendered
+    setTimeout(() => {
+      initScrollAnimations();
+    }, 100);
+  });
+</script>
