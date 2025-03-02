@@ -1,0 +1,49 @@
+.background-music-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.music-button {
+  background-color: var(--dark-pink);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  opacity: 0.8;
+  padding: 0;
+}
+
+.music-button:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.music-icon {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+
+.music-button.playing {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

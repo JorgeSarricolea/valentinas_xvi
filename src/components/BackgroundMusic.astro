@@ -1,0 +1,77 @@
+---
+import "../styles/background-music.css";
+---
+
+<div class="background-music-container">
+  <audio id="background-music" loop preload="auto">
+    <source src="src/assets/mp3/background_song.mp3" type="audio/mp3" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <button id="music-toggle" class="music-button" aria-label="Play music">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      class="music-icon"
+    >
+      <path
+        d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"
+      ></path>
+    </svg>
+  </button>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const music = document.getElementById(
+      "background-music"
+    ) as HTMLAudioElement;
+    const musicButton = document.getElementById("music-toggle");
+
+    // Add a load event listener to check if the audio can be loaded
+    music.addEventListener("error", (e) => {
+      console.error("Error loading audio file:", e);
+    });
+
+    // Function to start playing music
+    const playMusic = () => {
+      if (music) {
+        try {
+          music.volume = 0.3;
+          music.currentTime = 10;
+          const playPromise = music.play();
+
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => {
+                musicButton?.classList.add("playing");
+              })
+              .catch((error) => {
+                console.error("Error playing music:", error);
+              });
+          }
+        } catch (e) {
+          console.error("Exception when playing music:", e);
+        }
+      }
+    };
+
+    // Function to pause music
+    const pauseMusic = () => {
+      if (music) {
+        music.pause();
+        musicButton?.classList.remove("playing");
+      }
+    };
+
+    // Toggle music on button click
+    musicButton?.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (music?.paused) {
+        playMusic();
+      } else {
+        pauseMusic();
+      }
+    });
+  });
+</script>
