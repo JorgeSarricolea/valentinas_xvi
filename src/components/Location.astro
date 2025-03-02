@@ -1,0 +1,51 @@
+---
+import "../styles/location.css";
+import { animateWords } from "../utils/animations.js";
+
+const locationText = "Salón de Eventos Club Rotario";
+const addressText =
+  "Av. López Mateos 226 A, Pallas, 24120 Cd. del Carmen, Camp.";
+const dateText = "29 de Marzo, 2025 • 08:00 PM";
+---
+
+<section class="location-section section" id="location">
+  <div class="section-content scroll-animate" data-animation="fade-up">
+    <h2 class="letter-container">
+      <span class="letter-animate" style="transition-delay: 0.05s;">L</span>
+      <span class="letter-animate" style="transition-delay: 0.1s;">U</span>
+      <span class="letter-animate" style="transition-delay: 0.15s;">G</span>
+      <span class="letter-animate" style="transition-delay: 0.2s;">A</span>
+      <span class="letter-animate" style="transition-delay: 0.25s;">R</span>
+    </h2>
+
+    <div class="location-details">
+      <p
+        class="venue word-container"
+        set:html={animateWords(locationText, 0.2)}
+      />
+      <p
+        class="address word-container"
+        set:html={animateWords(addressText, 0.4)}
+      />
+      <p class="date word-container" set:html={animateWords(dateText, 0.6)} />
+    </div>
+
+    <div class="map-container scroll-animate" data-animation="fade-up">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.2210061358655!2d-91.8408876!3d18.654076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85f1a82d6553592f%3A0xa860b67bb2116eb9!2sClub%20Rotario%20CIudad%20del%20Carmen!5e0!3m2!1ses-419!2smx!4v1740911599613!5m2!1ses-419!2smx"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="cta-button scroll-animate" data-animation="fade-up">
+      <a
+        href="https://www.google.com/maps/dir//Club+Rotario+CIudad+del+Carmen+Av+L%C3%B3pez+Mateos+226+A+Pallas+24120+Cdad.+del+Carmen,+Camp./@18.6540564,-91.8409456,17z/data=!4m5!4m4!1m0!1m2!1m1!1s0x85f1a82d6553592f:0xa860b67bb2116eb9"
+        target="_blank"
+        rel="noopener noreferrer">Cómo llegar</a
+      >
+    </div>
+  </div>
+</section>

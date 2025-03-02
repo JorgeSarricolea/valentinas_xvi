@@ -1,0 +1,47 @@
+.location-section {
+  background-color: var(--light-light-darker-pink);
+}
+
+.location-details {
+  margin: var(--spacing-lg) 0;
+}
+
+.venue {
+  font-size: var(--heading-small);
+  font-weight: 600;
+  color: var(--dark-pink);
+  margin-bottom: var(--spacing-xs);
+}
+
+.address,
+.date {
+  font-size: var(--text-regular);
+  color: var(--darker-pink);
+  margin-bottom: var(--spacing-xs);
+}
+
+.map-container {
+  margin: var(--spacing-lg) 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  height: 300px;
+}
+
+.cta-button a {
+  display: inline-block;
+  background-color: var(--dark-pink);
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.cta-button a:hover {
+  background-color: var(--darker-pink);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(166, 93, 93, 0.3);
+}
