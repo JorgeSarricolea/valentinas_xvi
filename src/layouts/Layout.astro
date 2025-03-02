@@ -4,6 +4,8 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+import BackgroundMusic from "../components/BackgroundMusic.astro";
 ---
 
 <!doctype html>
@@ -23,6 +25,8 @@ const { title } = Astro.props;
     />
   </head>
   <body>
+    <BackgroundMusic />
+
     <slot />
   </body>
 </html>
