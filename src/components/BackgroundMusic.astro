@@ -3,22 +3,34 @@ import "../styles/background-music.css";
 import backgroundMusic from "../assets/mp3/background_song.mp3";
 ---
 
-<div class="background-music-container">
+<div class="music-player">
   <audio id="background-music" loop preload="auto">
     <source src={backgroundMusic} type="audio/mp3" />
     Your browser does not support the audio element.
   </audio>
 
   <button id="music-toggle" class="music-button" aria-label="Play music">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      class="music-icon"
-    >
-      <path
-        d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"
-      ></path>
-    </svg>
+    <div class="music-info">
+      <span class="music-status">Play Music</span>
+      <svg
+        class="play-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+      >
+        <path fill="currentColor" d="M8 5v14l11-7z"></path>
+      </svg>
+      <svg
+        class="pause-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+      >
+        <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+      </svg>
+    </div>
   </button>
 </div>
 
@@ -28,6 +40,7 @@ import backgroundMusic from "../assets/mp3/background_song.mp3";
       "background-music"
     ) as HTMLAudioElement;
     const musicButton = document.getElementById("music-toggle");
+    const musicStatus = document.querySelector(".music-status");
 
     // Add a load event listener to check if the audio can be loaded
     music.addEventListener("error", (e) => {
@@ -46,6 +59,7 @@ import backgroundMusic from "../assets/mp3/background_song.mp3";
             playPromise
               .then(() => {
                 musicButton?.classList.add("playing");
+                if (musicStatus) musicStatus.textContent = "Now Playing";
               })
               .catch((error) => {
                 console.error("Error playing music:", error);
@@ -62,6 +76,7 @@ import backgroundMusic from "../assets/mp3/background_song.mp3";
       if (music) {
         music.pause();
         musicButton?.classList.remove("playing");
+        if (musicStatus) musicStatus.textContent = "Play Music";
       }
     };
 

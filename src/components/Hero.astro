@@ -11,6 +11,7 @@ import petal7 from "../assets/imgs/petal_7.png";
 import "../styles/globals.css";
 import "../styles/hero.css";
 import { animateWords } from "../utils/animations.js";
+import BackgroundMusic from "./BackgroundMusic.astro";
 
 const subtitleText = "¡Celebremos juntos mis Dulces 16!";
 ---
@@ -55,8 +56,9 @@ const subtitleText = "¡Celebremos juntos mis Dulces 16!";
       <span class="letter-animate" style="transition-delay: 0.4s;">N</span>
       <span class="letter-animate" style="transition-delay: 0.45s;">A</span>
     </h2>
+    <p class="word-container" set:html={animateWords(subtitleText, 0.5)} />
+    <BackgroundMusic />
   </div>
-  <p class="word-container" set:html={animateWords(subtitleText, 0.5)} />
 
   <div class="falling-flowers-container"></div>
 

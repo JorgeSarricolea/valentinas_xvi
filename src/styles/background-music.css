@@ -5,45 +5,83 @@
   z-index: 1000;
 }
 
-.music-button {
-  background-color: var(--dark-pink);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+.music-player {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.music-button {
+  background: var(--dark-pink);
+  border: none;
+  border-radius: 25px;
+  padding: 0.8rem 1.5rem;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
-  opacity: 0.8;
-  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: white;
 }
 
 .music-button:hover {
-  transform: scale(1.1);
-  opacity: 1;
+  background: var(--darker-pink);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(166, 93, 93, 0.2);
 }
 
-.music-icon {
+.music-info {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.music-status {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+/* Icon styles */
+.play-icon, .pause-icon {
   width: 24px;
   height: 24px;
-  fill: white;
+  transition: all 0.3s ease;
 }
 
-.music-button.playing {
-  animation: pulse 2s infinite;
+/* Hide pause icon by default */
+.pause-icon {
+  display: none;
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
+/* Show pause icon when playing */
+.music-button.playing .pause-icon {
+  display: block;
+}
+
+.music-button.playing .play-icon {
+  display: none;
+}
+
+/* Icon hover effect */
+.music-button:hover .play-icon,
+.music-button:hover .pause-icon {
+  transform: scale(1.1);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .music-button {
+    padding: 0.6rem 1.2rem;
   }
-  50% {
-    transform: scale(1.1);
+  
+  .music-info {
+    font-size: 0.8rem;
   }
-  100% {
-    transform: scale(1);
+
+  .play-icon, .pause-icon {
+    width: 20px;
+    height: 20px;
   }
 }
