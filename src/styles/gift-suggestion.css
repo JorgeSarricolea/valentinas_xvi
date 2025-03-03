@@ -33,7 +33,7 @@
 .gift-description {
   font-size: var(--text-regular);
   color: var(--darker-pink);
-  margin: var(--spacing-md) 0;
+  margin: none;
   max-width: 350px;
   margin-left: auto;
   margin-right: auto;
@@ -562,4 +562,70 @@
 
 .amazon-gift-card:nth-child(3) {
   animation-delay: 0.3s;
+}
+
+/* Email copy button styles */
+.email-container {
+  display: flex;
+  justify-content: center;
+  margin: var(--spacing-md) 0;
+}
+
+.email-copy-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  color: var(--dark-pink);
+  font-weight: 500;
+}
+
+.email-text {
+  margin-left: 5px;
+}
+
+.email-copy-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--dark-pink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+  padding: 0;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.email-copy-button:hover {
+  background-color: rgba(166, 93, 93, 0.1);
+  transform: scale(1.1);
+}
+
+.email-copy-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.email-copy-button .copy-icon {
+  display: block;
+}
+
+.email-copy-button .check-icon {
+  display: none;
+}
+
+.email-copy-button.copied .copy-icon {
+  display: none;
+}
+
+.email-copy-button.copied .check-icon {
+  display: block;
+  color: var(--dark-pink);
+}
+
+.email-copy-button.copied {
+  background-color: rgba(166, 93, 93, 0.1);
 }

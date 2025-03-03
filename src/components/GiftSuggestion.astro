@@ -5,6 +5,8 @@ import { animateWords } from "../utils/animations.js";
 const giftTitle = "Lluvia de Sobres";
 const giftDescription =
   "Si deseas hacerme un regalo, un detalle en efectivo o tarjetas de regalo sería muy especial";
+const emailText = "Mi correo para las tarjetas de regalo es: ";
+const email = "diazguerravalentina1@gmail.com";
 
 // Gift card options with denominations
 const giftCards = [
@@ -12,7 +14,7 @@ const giftCards = [
     name: "Amazon",
     color: "#000000",
     textColor: "#ff9900",
-    denominations: ["$300", "$500", "$1000"],
+    denominations: ["$1000", "$2000", "$3000"],
     description: "Tarjeta de regalo para comprar en línea",
     link: "https://www.amazon.com.mx/Tarjeta-de-Regalo-Digital-Amazon-com-mx/dp/B07PMMFSPC/ref=lp_19117234011_1_2?pf_rd_p=a8422b71-27d5-4a7d-8254-0c9e97c83f02&pf_rd_r=7JJ8AN2Q8T1D9GX0AH2V&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D",
   },
@@ -20,7 +22,7 @@ const giftCards = [
     name: "Liverpool",
     color: "#e10098",
     textColor: "#ffffff",
-    denominations: ["$300", "$500", "$1000"],
+    denominations: ["$1000", "$2000", "$3000"],
     description: "Tarjeta de regalo para tienda departamental",
     link: "https://www.liverpool.com.mx/tienda/browse/storelocator",
   },
@@ -63,6 +65,43 @@ const giftCards = [
         class="gift-description word-container"
         set:html={animateWords(giftDescription, 0.2)}
       />
+      <div class="email-container">
+        <p class="gift-description">
+          <span set:html={animateWords(emailText, 0.2)} />
+          <span class="email-copy-wrapper">
+            <span class="email-text" set:html={animateWords(email, 0.2)} />
+            <button class="email-copy-button" aria-label="Copiar correo">
+              <svg
+                class="copy-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path
+                  d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                ></path>
+              </svg>
+              <svg
+                class="check-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+          </span>
+        </p>
+      </div>
 
       <div class="gift-cards-container scroll-animate" data-animation="fade-up">
         {
@@ -165,6 +204,36 @@ const giftCards = [
       ".amazon-gift-card.copyable"
     );
     const copyNotification = document.querySelector(".copy-notification");
+    const emailCopyButton = document.querySelector(".email-copy-button");
+    const emailText = document.querySelector(".email-text");
+
+    // Email copy functionality
+    if (emailCopyButton && emailText) {
+      emailCopyButton.addEventListener("click", function () {
+        const textToCopy = emailText.textContent || "";
+
+        navigator.clipboard
+          .writeText(textToCopy)
+          .then(() => {
+            // Show success notification
+            copyNotification?.classList.add("show");
+            setTimeout(() => {
+              copyNotification?.classList.remove("show");
+            }, 2000);
+
+            // Change button to check icon
+            emailCopyButton.classList.add("copied");
+
+            // Change back to copy icon after 2 seconds
+            setTimeout(() => {
+              emailCopyButton.classList.remove("copied");
+            }, 2000);
+          })
+          .catch((err) => {
+            console.error("Error copying email: ", err);
+          });
+      });
+    }
 
     // Create falling money animation
     function createMoneyRain() {
