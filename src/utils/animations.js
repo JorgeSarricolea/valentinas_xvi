@@ -61,7 +61,7 @@ export function initScrollAnimations() {
       const heroWords = heroContent.querySelectorAll(".word-animate");
 
       heroLetters.forEach((letter, index) => {
-        setTimeout(() => {
+      setTimeout(() => {
           letter.classList.add("scroll-down");
           letter.classList.add("scrolled");
           letter.classList.add("fade-in");
@@ -69,7 +69,7 @@ export function initScrollAnimations() {
       });
 
       heroWords.forEach((word, index) => {
-        setTimeout(() => {
+      setTimeout(() => {
           word.classList.add("scroll-down");
           word.classList.add("scrolled");
           word.classList.add("fade-in");
